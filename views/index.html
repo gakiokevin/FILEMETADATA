@@ -43,7 +43,7 @@ const formData = new FormData()
 formData.append('file',fileInput)
 
  try{
-  const res = await fetch("http://localhost:3000/upload-file",{method:"POST", body:formData})
+  const res = await fetch("https://filemetadata-prpm.onrender.com/upload-file",{method:"POST", body:formData})
 const data =  await res.json()
    if(!res.ok){
     console.log(res.status)
