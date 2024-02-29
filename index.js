@@ -1,9 +1,9 @@
-const  express =  require('express')
+const  express = require('express')
 const cors = require('cors')
 const multer =  require('multer')
 const bodyParser = require('body-parser')
 require('dotenv').config()
-const PORT  =  process.env.PORT ||3000
+const PORT  =  process.env.PORT || 3000
 const path = require('path');
 
 
@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
 
 
 function uploadFile(req,res,){
-   const file =  req.file
+   const file = req.file
 
    if(!file){
     return res.status(400).json({ error: 'No file uploaded.' });
