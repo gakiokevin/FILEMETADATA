@@ -8,50 +8,62 @@
   <body>
     <h1>Upload a file here</h1>
 
-    <form id="form" method="POST">
-      <input type="file" name="upfile" />
-      <button type="submit">Submit</button>
-    </form>
-    <p id="json"></p>
-    <p id="success"></p>
-    <p id="fail"></p>
-    <script>
-      let form = document.getElementById("form");
- if(form)form.addEventListener("submit", uploadFile);
-      
-      async function uploadFile(e) {
-        e.preventDefault();
-        const formChildren = e.target.children;
+  <form id='form' action="https://filemetadata-prpm.onrender.com/upload-file" method="POST">
+    <input type="file" name="upfile"/>
+    <input type="text" name="firstName" value=""/>
+    <button type="submit">Submit</button>
 
-        const file = formChildren.upfile;
-        if (file.files.length > 0) {
-          let success = document.getElementById("success");
-          success.textContent = "A file was uploaded";
+  </form>
+  <p id="json"></p>
+  <p id="success"></p>
+  <p id="fail"></p>
+  <script>
 
-          try {
-            const fileInput = file.files[0];
-            const formData = new FormData();
-            formData.append("file", fileInput);
-            const res = await fetch(
-              "https://filemetadata-prpm.onrender.com/upload-file",
-              { method: "POST", body: formData }
-            );
-            const data = await res.json();
+let form  = document.getElementById('form')
+if(form)form.addEventListener('submit',uploadFile)
 
-            if (!res.ok) {
-              console.log(res.status);
-            } else {
-              let output = document.getElementById("json");
-              output.textContent = JSON.stringify(data);
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        } else {
-          let fail = document.getElementById("fail");
-          success.textContent = "Please upload a file";
-        }
-      }
-    </script>
-  </body>
+async function uploadFile(e){
+  e.preventDefault()
+ const formChildren =  e.target.children
+
+const file = formChildren.upfile
+if (file.files.length > 0){
+
+  let success  = document.getElementById('success')
+  success.textContent = 'A file was uploaded'
+
+
+
+
+
+ try{
+  const formData = new FormData()
+  const fileInput = file.files[0]
+  formData.append('file',fileInput)
+  const res = await fetch("https://filemetadata-prpm.onrender.com/upload-file",{method:"POST", body:formData})
+const data =  await res.json()
+   if(!res.ok){
+    console.log(res.status)
+   }else {
+     console.log(data)
+    let output =  document.getElementById('json')
+   output.textContent = JSON.stringify(data) 
+   }
+ 
+
+
+ }catch(error){
+  console.log(error)
+ }
+
+}else {
+  let fail  = document.getElementById('fail')
+  fail.textContent = 'Please upload a file'
+  
+}
+}
+
+
+  </script>
+</body>
 </html>
