@@ -17,13 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const storage = multer.memoryStorage(); 
 const upload = multer({ storage: storage });
 
-
-
-app.post('/upload-file',upload.single('file'),uploadFile)
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
+app.post('/upload-file',upload.single('file'),uploadFile)
+
 
 
 function uploadFile(req,res,){
