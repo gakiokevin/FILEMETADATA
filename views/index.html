@@ -1,34 +1,72 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File metadata</title>
+</head>
+<body>
+  <h1>Upload a file here</h1>
 
-<html>
-   <head>
-      <title>File Metadata</title>
-      <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png" type="image/x-icon"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="/public/style.css" rel="stylesheet" type="text/css">
-   </head>
+  <form id='form' action="" method="POST">
+    <input type="file" name="upfile"/>
+    <input type="text" name="firstName" value=""/>
+    <button type="submit">Submit</button>
 
-   <body>
-      <div class="container">
-        <h1>API Project: File Metadata Microservice</h1>
+  </form>
+  <p id="json"></p>
+  <p id="success"></p>
+  <p id="fail"></p>
+  <script>
 
-        <h2>Usage:</h2>
-        <p>
-          Please Upload a File ...
-        </p>
-        <div class="view">
-          <h3 id="output"></h3>
-          <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse">
-            <input id="inputfield" type="file" name="upfile">
-            <input id="button" type="submit" value="Upload">
-          </form>
-        </div>
-      </div>
-      <div class="footer">
-        <p>
-          by 
-          <a href="http://www.freecodecamp.com">freeCodeCamp</a>
-        </p>
-      </div>
-   </body>
+let f  = document.getElementById('form')
+
+f.addEventListener('submit',uploadFile)
+
+ 
+
+
+
+async function uploadFile(e){
+  e.preventDefault()
+ const formChildren =  e.target.children
+
+const file = formChildren.upfile
+if (file.files.length > 0){
+
+  let success  = document.getElementById('success')
+  success.textContent = 'A file was uploaded'
+const fileInput = file.files[0]
+
+
+const formData = new FormData()
+formData.append('file',fileInput)
+
+ try{
+  const res = await fetch("http://localhost:3000/upload-file",{method:"POST", body:formData})
+const data =  await res.json()
+   if(!res.ok){
+    console.log(res.status)
+   }else {
+     console.log(data)
+    let output =  document.getElementById('json')
+   output.textContent = JSON.stringify(data) 
+   }
+ 
+
+
+ }catch(error){
+  console.log(error)
+ }
+
+}else {
+  let fail  = document.getElementById('fail')
+  success.textContent = 'Please upload a file'
+  
+}
+}
+
+
+  </script>
+</body>
 </html>
