@@ -28,7 +28,7 @@ function uploadFile(req,res,){
    const file = req.file
 
    if(!file){
-    return res.status(400).json({ error: 'No file uploaded.' });
+    return res.json({ error: 'No file uploaded.' });
    }
 
    const fileSize = file.size
