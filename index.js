@@ -18,7 +18,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  return res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 app.post('/upload-file',upload.single('file'),uploadFile)
 
@@ -36,7 +36,7 @@ function uploadFile(req,res,){
    const fileName = file.originalname
       
 
-   res.json({name:fileName,type:fileType,size:fileSize})
+   return res.json({name:fileName,type:fileType,size:fileSize})
 
 
 }
