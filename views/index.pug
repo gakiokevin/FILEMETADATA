@@ -28,7 +28,7 @@ DOCTYPE
                font-size:20px;
             }
       body
-         form(action="https://filemetadata-prpm.onrender.com/api/fileanalyse" method="post" id='form')
+         form(method="post" id='form')
             input(type="file" name="upfile" id="upfile",required) 
             input(type="submit" value="upload" id='submit-btn')
          div 
@@ -51,7 +51,7 @@ DOCTYPE
 
             formData.append('file',fileInput) 
 
-            const results = await fetch('https://filemetadata-prpm.onrender.com/api/fileanalyse',{method:'POST',body:formData})
+            const results = await fetch('',{method:'POST',body:formData})
 
             const  response = await results.json()
             let data1 = document.getElementById('data1')
