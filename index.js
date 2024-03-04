@@ -13,14 +13,14 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const storage = multer.memoryStorage(); 
-const upload = multer({ storage: storage });
+const upload = multer()
+
 app.get('/',(req,res)=>{
   return res.render('index.pug')
 })
 
 
-app.post('/upload-file',upload.single('file'),uploadFile)
+app.post('/upload-file',upload.single('upfile'),uploadFile)
 
 
 
