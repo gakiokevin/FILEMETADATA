@@ -33,7 +33,7 @@ function uploadFile(req,res,){
    const fileName = file.originalname
     
 
-   res.json([fileName,fileType,fileSize])
+   res.json({name:fileName,type:fileType,size:fileSize})
 }
 
 
