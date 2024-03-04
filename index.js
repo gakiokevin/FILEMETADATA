@@ -15,9 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const storage = multer.memoryStorage(); 
 const upload = multer({ storage: storage });
-app.get('/',(req,res)=>{
-  return res.render('index.pug')
-})
+// app.get('/',(req,res)=>{
+//   return res.render('index.pug')
+// })
 
 
 app.post('/upload-file',upload.single('file'),uploadFile)
