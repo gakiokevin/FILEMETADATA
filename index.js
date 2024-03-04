@@ -25,7 +25,11 @@ app.post('/upload-file',upload.single('file'),uploadFile)
 
 
 function uploadFile(req,res,){
+try {
    const file = req.file
+  if(!file){
+     return res.status(400).json({ error: 'No file uploaded.' });
+  }
 
 
    const fileSize = file.size
@@ -33,7 +37,12 @@ function uploadFile(req,res,){
    const fileName = file.originalname
     
 
-   res.json({name:fileName,type:fileType,size:fileSize})
+   return res.json({name:fileName,type:fileType,size:fileSize})  
+}catch(error){
+  console.error('Error:', error);
+  res.status(500).json({ error: 'Internal server error.' });
+}
+  
 }
 
 
