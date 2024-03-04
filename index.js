@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
 })
 
 
-app.post('api/fileanalyse',upload.single('upfile'),uploadFile)
+app.post('/api/fileanalyse',upload.single('upfile'),uploadFile)
 
 
 
