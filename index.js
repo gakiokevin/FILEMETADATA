@@ -19,15 +19,22 @@ app.get('/',(req,res)=>{
   return res.render('index.pug')
 })
 
+
 app.post('/upload-file',upload.single('file'),uploadFile)
 
 
 
 function uploadFile(req,res,){
    const file = req.file
+
+   if(!file){
+    return res.json({ error: 'No file uploaded.' });
+   }
+
    const fileSize = file.size
    const fileType = file.mimetype
    const fileName = file.originalname
+    
 
    res.json([fileName,fileType,fileSize])
 }
