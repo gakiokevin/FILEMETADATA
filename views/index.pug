@@ -40,9 +40,10 @@ DOCTYPE
 
          document.getElementById('form').addEventListener('submit',submit)
 
-
+        
          async function submit(e){
-            e.preventDefault()
+            try{
+                   e.preventDefault()
             const file = document.getElementById('upfile')
             if(Boolean(file.files.length)){
             let formData =  new FormData()
@@ -59,17 +60,15 @@ DOCTYPE
             data2.textContent = response.type
             let data3 = document.getElementById('data3')
             data3.textContent = response.size
-            
-            
-            
-            console.log(response)
-
-
-
                document.querySelector('form').reset();
             } else {
-               console.log('please upload a file')
+               console.error('you error',error)
             }
             }
+               catch(error){
+               console.error('Error',error)
+                     } 
+            }
+                  
 
 
