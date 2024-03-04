@@ -32,9 +32,9 @@ DOCTYPE
             input(type="file" name="upfile" id="upfile",required) 
             input(type="submit" value="upload" id='submit-btn')
          div 
-            p.data
-            p.data
-            p.data
+            p#data1
+            p#data2
+            p#data3
       script. 
 
 
@@ -53,10 +53,15 @@ DOCTYPE
             const results = await fetch('https://filemetadata-prpm.onrender.com/upload-file',{method:'POST',body:formData})
 
             const  response = await results.json()
-
-            let showd =  document.querySelectorAll('.data')
-            let list =  Array.from(showd)
-            list.forEach((item,i)=>item.textContent = response[i])
+            let data1 = document.getElementById('data1')
+            data1.textContent = response.name
+            let data3 = document.getElementById('data2')
+            data2.textContent = response.type
+            let data3 = document.getElementById('data3')
+            data3.textContent = response.size
+            
+            
+            
             console.log(response)
 
 
