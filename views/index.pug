@@ -28,7 +28,7 @@ DOCTYPE
                font-size:20px;
             }
       body
-         form(action="https://filemetadata-prpm.onrender.com/api/fileanalyse",method="post" id='form')
+         form(action="https://filemetadata-prpm.onrender.com/api/fileanalyse",method="post" id='form',enctype="multipart/form-data")
             input(type="file" name="upfile" id="upfile",required) 
             input(type="submit" value="upload" id='submit-btn')
          div 
